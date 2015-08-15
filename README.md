@@ -1,4 +1,4 @@
-# TechReateat
+# Smart Shower 
 
 ## Inspiration
 
