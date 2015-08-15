@@ -4,6 +4,7 @@ import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.Intent;
 import android.os.CountDownTimer;
+import android.os.Environment;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.text.Editable;
@@ -17,6 +18,7 @@ import android.widget.Toast;
 import android.widget.ToggleButton;
 
 import java.io.BufferedReader;
+import java.io.File;
 import java.io.FileOutputStream;
 import java.io.InputStream;
 import java.io.InputStreamReader;
@@ -72,14 +74,24 @@ public class MainActivity extends ActionBarActivity {
         countDownTimer.start();
 
         // Save changeTo temp to file
-        String filename = "E:\\test\\src\\com\\test\\requesttemp.txt";
-        String string = Double.toString(totalChangeFarenheit);
+        String filename = "requesttemp.txt";
+        String string = Double.toString((totalChangeFarenheit-32)*5/9);
         FileOutputStream outputStream;
 
         try {
-            outputStream = openFileOutput(filename, Context.MODE_PRIVATE);
-            outputStream.write(string.getBytes());
-            outputStream.close();
+            FileOutputStream fos = openFileOutput(filename,
+                    Context.MODE_APPEND | Context.MODE_WORLD_READABLE);
+            fos.write(string.getBytes());
+            fos.close();
+
+            String storageState = Environment.getExternalStorageState();
+            if (storageState.equals(Environment.MEDIA_MOUNTED)) {
+                File file = new File(getExternalFilesDir(null),
+                        filename);
+                FileOutputStream fos2 = new FileOutputStream(file);
+                fos2.write(string.getBytes());
+                fos2.close();
+            }
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -206,14 +218,24 @@ public class MainActivity extends ActionBarActivity {
         public void onFinish() {
 
             // Save changeTo temp to file
-            String filename = "E:\\test\\src\\com\\test\\requesttemp.txt";
-            String string = Double.toString(totalChangeFarenheit);
+            String filename = "requesttemp.txt";
+            String string = Double.toString((totalChangeFarenheit-32)*5/9);
             FileOutputStream outputStream;
 
             try {
-                outputStream = openFileOutput(filename, Context.MODE_PRIVATE);
-                outputStream.write(string.getBytes());
-                outputStream.close();
+                FileOutputStream fos = openFileOutput(filename,
+                        Context.MODE_APPEND | Context.MODE_WORLD_READABLE);
+                fos.write(string.getBytes());
+                fos.close();
+
+                String storageState = Environment.getExternalStorageState();
+                if (storageState.equals(Environment.MEDIA_MOUNTED)) {
+                    File file = new File(getExternalFilesDir(null),
+                            filename);
+                    FileOutputStream fos2 = new FileOutputStream(file);
+                    fos2.write(string.getBytes());
+                    fos2.close();
+                }
             } catch (Exception e) {
                 e.printStackTrace();
             }
