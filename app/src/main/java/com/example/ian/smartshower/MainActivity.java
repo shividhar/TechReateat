@@ -16,7 +16,10 @@ import android.widget.TextView;
 import android.widget.Toast;
 import android.widget.ToggleButton;
 
+import java.io.BufferedReader;
 import java.io.FileOutputStream;
+import java.io.InputStream;
+import java.io.InputStreamReader;
 
 public class MainActivity extends ActionBarActivity {
 
@@ -69,7 +72,7 @@ public class MainActivity extends ActionBarActivity {
         countDownTimer.start();
 
         // Save changeTo temp to file
-        String filename = "requesttemp";
+        String filename = "E:\\test\\src\\com\\test\\requesttemp.txt";
         String string = Double.toString(totalChangeFarenheit);
         FileOutputStream outputStream;
 
@@ -79,6 +82,30 @@ public class MainActivity extends ActionBarActivity {
             outputStream.close();
         } catch (Exception e) {
             e.printStackTrace();
+        }
+
+        try
+        {
+            InputStream instream = openFileInput(filename);
+            if (instream != null)
+            {
+                InputStreamReader inputreader = new InputStreamReader(instream);
+                BufferedReader buffreader = new BufferedReader(inputreader);
+                String line,line1 = "";
+                try
+                {
+                    while ((line = buffreader.readLine()) != null)
+                        line1+=line;
+                }catch (Exception e)
+                {
+                    e.printStackTrace();
+                }
+            }
+        }
+        catch (Exception e)
+        {
+            String error="";
+            error=e.getMessage();
         }
     }
 
@@ -179,7 +206,7 @@ public class MainActivity extends ActionBarActivity {
         public void onFinish() {
 
             // Save changeTo temp to file
-            String filename = "requesttemp";
+            String filename = "E:\\test\\src\\com\\test\\requesttemp.txt";
             String string = Double.toString(totalChangeFarenheit);
             FileOutputStream outputStream;
 
@@ -191,8 +218,33 @@ public class MainActivity extends ActionBarActivity {
                 e.printStackTrace();
             }
 
+            try
+            {
+                InputStream instream = openFileInput(filename);
+                if (instream != null)
+                {
+                    InputStreamReader inputreader = new InputStreamReader(instream);
+                    BufferedReader buffreader = new BufferedReader(inputreader);
+                    String line;
+                    String line1="";
+                    try
+                    {
+                        while ((line = buffreader.readLine()) != null)
+                            line1+=line;
+                    }catch (Exception e)
+                    {
+                        e.printStackTrace();
+                    }
+                    Toast.makeText(getApplicationContext(), line1, Toast.LENGTH_SHORT).show();
+                }
+            }
+            catch (Exception e)
+            {
+                Toast.makeText(getApplicationContext(), "Error", Toast.LENGTH_SHORT).show();
+            }
+
             // Send a toast
-            Toast.makeText(getApplicationContext(), "Done", Toast.LENGTH_SHORT).show();
+//            Toast.makeText(getApplicationContext(), "Done", Toast.LENGTH_SHORT).show();
         }
 
         @Override
