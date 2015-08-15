@@ -1,4 +1,4 @@
-# Smart Shower 
+# SmartShower 
 
 ## Inspiration
 
@@ -11,7 +11,7 @@ Showering personally affects all four of us working on this project, and million
 
 By using a bracket and motor to control the tap, a microprocessor and temperature sensor to process the temperature and other data and a phone app for the user to control it all, our tech automatically sets and maintains the perfect temperature.
 
-## Challenges I ran into
+## Challenges we ran into
 
 Our original temperature sensor did not function for no apparent reason, all wiring and code was checked by multiple people, yet the root of the cause was not found. This problem was solved by obtaining a different temperature sensor and by using different code.
 
@@ -21,7 +21,7 @@ It was also very difficult to find the resources and tools to properly construct
 
 Before this project, we didn't know very much about Android, didn't know how to use Intel Edison, and basically went in fresh. We overcame everything through hard work, and help from mentors.
 
-## What I learned
+## What we learned
 
 Android development, Android/Intel Edison file management, integrating Github into Android Studio, Intel Edison code, and working with temperature sensors.
 
