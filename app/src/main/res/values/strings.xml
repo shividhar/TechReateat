@@ -1,0 +1,12 @@
+<resources>
+    <string name="app_name">SmartShower</string>
+
+    <string name="hello_world">Hello world!</string>
+    <string name="action_settings">Settings</string>
+    <string name="showUnitF">°F</string>
+    <string name="showUnitC">°C</string>
+    <string name="tempIncreaseF">+ (F)</string>
+    <string name="tempIncreaseC">+ (C)</string>
+    <string name="tempDecreaseF">- (F)</string>
+    <string name="tempDecreaseC">- (C)</string>
+</resources>
